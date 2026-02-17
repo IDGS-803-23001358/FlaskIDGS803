@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Página no encontrada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/output.css') }}">
+</head>
+<body class="bg-neutral-primary flex items-center justify-center min-h-screen">
+
+    <div class="text-center px-6">
+        
+        <!-- Número 404 -->
+        <h1 class="text-9xl font-extrabold text-fg-brand drop-shadow-lg">
+            404
+        </h1>
+
+        <!-- Mensaje -->
+        <h2 class="mt-6 text-2xl md:text-3xl font-semibold text-heading">
+            Página no encontrada
+        </h2>
+
+        <p class="mt-4 text-body max-w-md mx-auto">
+            Lo sentimos, la página que estás buscando no existe 
+            o fue movida a otra ubicación.
+        </p>
+
+        <!-- Botón -->
+        <div class="mt-8">
+            <a href="/" 
+               class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-brand rounded-lg hover:bg-brand-emphasis focus:ring-4 focus:outline-none focus:ring-brand/30 transition duration-300">
+                Volver al inicio
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
