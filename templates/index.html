@@ -1,10 +1,10 @@
-
 {% extends "layout.html" %}
- {% block container %} 
+{% block container %} 
 
 <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
 
-<a href="#" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+<a href="{{ url_for('alumnos') }}"
+class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
     Nuevo
 </a>
 
@@ -19,42 +19,49 @@
             <th class="px-6 py-3 font-medium text-center">Eliminar</th>
         </tr>
     </thead>
-    <tbody>
-        <tr class="bg-neutral-primary border-b border-default">
-            <th class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                Mario Juan
-            </th>
-            <td class="px-6 py-4">Lopez</td>
-            <td class="px-6 py-4">lopez@gmail.com</td>
-            
+   <tbody>
 
-            <td class="px-6 py-4 text-center">
-                <a href="#" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                    Editar
-                </a>
-            </td>
+{% for alumn in alumno %}
 
-            <td class="px-6 py-4 text-center">
-                <a href="#" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                    Detalles
-                </a>
-            </td>
+<tr class="bg-neutral-primary border-b border-default">
+    <th class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+        {{ alumn.nombre }}
+    </th>
 
-            <td class="px-6 py-4 text-center">
-                <a href="#" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                    Eliminar
-                </a>
-            </td>
-        </tr>
+    <td class="px-6 py-4">{{ alumn.apaterno }}</td>
+    <td class="px-6 py-4">{{ alumn.email }}</td>
 
-        <!-- Puedes duplicar la fila para los demás registros -->
+    <!-- EDITAR -->
+    <td class="px-6 py-4 text-center">
+        <a href="{{ url_for('alumnos', id=alumn.id) }}"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Editar
+        </a>
+    </td>
 
-    </tbody>
+    <!-- DETALLES -->
+    <td class="px-6 py-4 text-center">
+        <a href="{{ url_for('detalles', id=alumn.id) }}"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Detalles
+        </a>
+    </td>
+
+    <!-- ELIMINAR (si lo usas) -->
+    <td class="px-6 py-4 text-center">
+        <a href="#"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Eliminar
+        </a>
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
 </table>
 </div>
-
-
-
-
 
 {% endblock %}
