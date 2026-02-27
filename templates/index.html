@@ -31,25 +31,23 @@ class="text-white bg-brand box-border border border-transparent hover:bg-brand-s
     <td class="px-6 py-4">{{ alumn.apaterno }}</td>
     <td class="px-6 py-4">{{ alumn.email }}</td>
 
-    <!-- EDITAR -->
     <td class="px-6 py-4 text-center">
-        <a href="{{ url_for('alumnos', id=alumn.id) }}"
+        <a href="{{ url_for('modificar', id=alumn.id) }}"
         class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
             Editar
         </a>
     </td>
 
-    <!-- DETALLES -->
+   
     <td class="px-6 py-4 text-center">
         <a href="{{ url_for('detalles', id=alumn.id) }}"
         class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
             Detalles
         </a>
     </td>
-
-    <!-- ELIMINAR (si lo usas) -->
+  
     <td class="px-6 py-4 text-center">
-        <a href="#"
+         <a href="{{ url_for('eliminar', id=alumn.id) }}"
         class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
             Eliminar
         </a>

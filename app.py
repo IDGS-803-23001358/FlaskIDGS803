@@ -26,7 +26,8 @@ def index():
 def alumnos():
     create_form = forms.Userform(request.form)
 
-    if request.method == 'POST':
+    if request.method == 'POST'and create_form.validate():
+
         alum = Alumnos(
             nombre=create_form.nombre.data,
             apaterno=create_form.apaterno.data,
@@ -52,6 +53,45 @@ def detalles():
         email = alum1.email
         
         return render_template("detalles.html",nombre=nombre,apaterno=apaterno,email=email)
+@app.route("/modificar", methods=['GET', 'POST'])
+def modificar():
+    create_form = forms.Userform(request.form)
+
+    if request.method == 'GET':
+        id = request.args.get('id')
+        alum1 = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+        create_form.id.data=request.args.get('id')
+        create_form.nombre.data = alum1.nombre
+        create_form.apaterno.data = alum1.apaterno
+        create_form.email.data = alum1.email
+    if request.method=='POST':
+        id=create_form.id.data
+        alum1=db.session.query(Alumnos).filter(Alumnos.id==id).first()   
+        alum1.nombre=create_form.nombre.data 
+        alum1.apaterno=create_form.apaterno.data
+        alum1.email=create_form.email.data  
+        db.session.add(alum1)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template("modificar.html",form=create_form)
+@app.route("/eliminar", methods=['GET', 'POST'])
+def eliminar():
+    create_form = forms.Userform(request.form)
+
+    if request.method == 'GET':
+        id = request.args.get('id')
+        alum1 = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+        create_form.id.data=request.args.get('id')
+        create_form.nombre.data = alum1.nombre
+        create_form.apaterno.data = alum1.apaterno
+        create_form.email.data = alum1.email
+    if request.method == 'POST':
+        id = request.args.get('id')
+        alum = Alumnos.query.get(id)   
+        db.session.delete(alum)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template("eliminar.html",form=create_form)
 
 
 
