@@ -12,7 +12,8 @@ class="text-white bg-brand box-border border border-transparent hover:bg-brand-s
     <thead class="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">
         <tr>
             <th class="px-6 py-3 font-medium">NOMBRE</th>
-            <th class="px-6 py-3 font-medium">APATERNO</th>
+            <th class="px-6 py-3 font-medium">APELLIDOS</th>
+            <th class="px-6 py-3 font-medium">TELEFONO</th>
             <th class="px-6 py-3 font-medium">CORREO</th>
             <th class="px-6 py-3 font-medium text-center">Editar</th>
             <th class="px-6 py-3 font-medium text-center">Detalles</th>
@@ -28,7 +29,8 @@ class="text-white bg-brand box-border border border-transparent hover:bg-brand-s
         {{ alumn.nombre }}
     </th>
 
-    <td class="px-6 py-4">{{ alumn.apaterno }}</td>
+    <td>{{ alumn.apellidos }}</td>
+    <td>{{ alumn.telefono }}</td>
     <td class="px-6 py-4">{{ alumn.email }}</td>
 
     <td class="px-6 py-4 text-center">
