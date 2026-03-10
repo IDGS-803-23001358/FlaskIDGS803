@@ -19,3 +19,23 @@ class Userform(Form):
      validators.DataRequired(message='El campo es requerido')])
      email=EmailField('correo',[
      validators.DataRequired(message='El campo es requerido')])
+class MaestroForm(Form):
+    matricula = IntegerField('Matricula', [
+        validators.DataRequired()
+    ])
+
+    nombre = StringField('Nombre', [
+        validators.DataRequired()
+    ])
+
+    apellidos = StringField('Apellidos', [
+        validators.DataRequired()
+    ])
+
+    especialidad = StringField('Especialidad', [
+        validators.DataRequired()
+    ])
+
+    email = EmailField('Correo', [
+        validators.DataRequired()
+    ])
