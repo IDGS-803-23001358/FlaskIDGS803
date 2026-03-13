@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block container %}
+<div class="flex justify-center items-center min-h-[80vh] py-10">
+    <div class="bg-white block max-w-sm w-full border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+
+        <div class="relative">
+            <img class="w-full h-48 object-cover"
+                 src="{{ url_for('static', filename='img/curso.png') }}"
+                 alt="Imagen Curso">
+            <a href="{{ url_for('cursos.cursos_index') }}"
+               class="absolute top-3 right-3 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md hover:bg-gray-100 transition">
+                ✕
+            </a>
+        </div>
+
+        <div class="p-6 text-center">
+            <span class="inline-block bg-brand-light text-brand text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                Detalles del Curso
+            </span>
+
+            <h5 class="mt-2 mb-1 text-2xl font-bold text-gray-800 uppercase">
+                {{ curso.nombre }}
+            </h5>
+            
+            <p class="text-sm text-gray-500 mb-4 italic">
+                {# Usamos curso.maestros porque así parece estar en tu modelo según el error #}
+                Maestro: 
+                {% if curso.maestros %}
+                    {{ curso.maestros.nombre }} {{ curso.maestros.apellidos }}
+                {% else %}
+                    Sin maestro asignado
+                {% endif %}
+            </p>
+
+            <div class="text-left bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-4">
+                <div>
+                    <span class="block text-xs text-gray-400 uppercase font-bold">Descripción</span>
+                    <span class="text-sm text-gray-700 block italic">
+                        {{ curso.descripcion }}
+                    </span>
+                </div>
+
+                <hr class="border-gray-200">
+
+                <div>
+                    <span class="block text-xs text-gray-400 uppercase font-bold mb-2">Alumnos Inscritos</span>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        {% for alumno in curso.alumnos %}
+                            <li class="flex items-center gap-2">
+                                <span class="text-brand">•</span> {{ alumno.nombre }} {{ alumno.apellidos }}
+                            </li>
+                        {% else %}
+                            <li class="text-gray-400 italic">No hay alumnos inscritos</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 flex flex-col gap-2">
+                <a href="{{ url_for('cursos.modificar', id=curso.id) }}"
+                   class="bg-brand hover:bg-brand-strong text-white px-4 py-2.5 rounded-lg text-sm font-bold shadow-sm transition transform hover:scale-105">
+                    Modificar Curso
+                </a>
+                <a href="{{ url_for('cursos.cursos_index') }}"
+                   class="text-gray-500 hover:text-gray-700 text-xs font-bold uppercase py-2">
+                    Volver al listado
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

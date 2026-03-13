@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<h2 class="text-2xl font-bold mb-6 text-center text-heading">Nueva Inscripción</h2>
+
+<form action="" method="POST" novalidate class="max-w-sm mx-auto">
+    
+    {# Token CSRF para seguridad #}
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    {# Selección de Alumno #}
+    <div class="mb-5">
+        <label for="alumno" class="block mb-2 text-sm font-medium text-heading">Seleccionar Alumno</label>
+        <select name="alumno" id="alumno" 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs transition-colors">
+            {% for alumno in alumnos %}
+                <option value="{{ alumno.id }}">
+                    {{ alumno.nombre }} {{ alumno.apellidos }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {# Selección de Curso #}
+    <div class="mb-5">
+        <label for="curso" class="block mb-2 text-sm font-medium text-heading">Seleccionar Curso</label>
+        <select name="curso" id="curso" 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs transition-colors">
+            {% for c in cursos %}
+                <option value="{{ c.id }}">
+                    {{ c.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {# Botones de Acción #}
+    <div class="flex flex-col gap-3 mt-8">
+        <button
+            type="submit"
+            class="w-full text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-transform hover:scale-[1.02]"
+        >
+            Confirmar Inscripción
+        </button>
+
+        <a href="{{ url_for('inscripciones.lista') }}" 
+           class="w-full text-center text-body bg-neutral-secondary-soft border border-default-medium hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-200 font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-colors">
+            Cancelar
+        </a>
+    </div>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<h2 class="text-2xl font-bold mb-6 text-center text-heading">Eliminar Curso</h2>
+
+<form action="" method="POST" novalidate class="max-w-sm mx-auto">
+
+    {# Token de seguridad CSRF #}
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    {# ID oculto del curso para eliminarlo #}
+    <input type="hidden" name="id" value="{{ curso.id }}">
+
+    {# Campo Nombre (Solo lectura o Deshabilitado para confirmar) #}
+    <div class="mb-5">
+        <label class="block mb-2 text-sm font-medium text-heading">Nombre del Curso</label>
+        <input type="text" value="{{ curso.nombre }}" readonly class="bg-neutral-100 border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs">
+    </div>
+
+    {# Campo Maestro con el array Dinámico que pediste #}
+    <div class="mb-5">
+        <label for="maestro" class="block mb-2 text-sm font-medium text-heading">Maestro asignado</label>
+        <select name="maestro" id="maestro" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">
+            {% for maestro in maestros %}
+                <option value="{{ maestro.matricula }}" {% if maestro.matricula == curso.maestro_id %} selected {% endif %}>
+                    {{ maestro.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+ 
+     <button type="submit"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+        Eliminar
+    </button>
+
+
+</form>
+
+{% endblock %}
